@@ -3,12 +3,12 @@ import json
 
 def save_id():
     while True:
-        username = input("아이디를 입력하세요 : ")
+        username = input("사용자 이름(USERNAME)을 입력하세요 : ")
         password = input("비밀번호를 입력하세요 : ")
         data = {"id": username, "pw": password}
         with open("account.json", "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
-        print("아이디 비밀번호가 저장되었습니다.\n")
+        print("사용자 이름과 비밀번호가 저장되었습니다.\n")
         return data
 
 
