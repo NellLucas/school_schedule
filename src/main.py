@@ -7,6 +7,8 @@ from instagrapi import Client
 from datetime import datetime
 
 
+upload_time = "00:30"
+school_name = "능주고등학교"
 account_data = util.get_id()
 ACCOUNT_USERNAME = account_data["id"]
 ACCOUNT_PASSWORD = account_data["pw"]
@@ -16,7 +18,6 @@ cl.login(ACCOUNT_USERNAME, ACCOUNT_PASSWORD)
 print("Login Successful")
 
 def fetch_image():
-    school_name = "능주고등학교"
     schedules, meal_data = ns.get_info(school_name, ns.get_current_date())
     draw.create_meal_image(schedules, meal_data)
     draw.create_schedule_image(school_name)
@@ -30,7 +31,7 @@ def upload_instagram():
     print("Upload Completed in ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
-schedule.every().day.at("01:00").do(upload_instagram)
+schedule.every().day.at(upload_time).do(upload_instagram)
 
 
 try:
