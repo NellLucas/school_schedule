@@ -11,7 +11,7 @@ def create_meal_image(schedule, meal_data, output_folder='images'):
     title_font_size = 75
     title_font = ImageFont.truetype("fonts/GmarketSansTTFBold.ttf", title_font_size)
 
-    meal_font_size = 50
+    meal_font_size = 65
     meal_font = ImageFont.truetype("fonts/GmarketSansTTFMedium.ttf", meal_font_size)
 
     schedule_font_size = 55
@@ -28,8 +28,8 @@ def create_meal_image(schedule, meal_data, output_folder='images'):
         y += title_font_size + 50
 
         for item in items:
-            draw.text((x, y), item, fill='black', font=meal_font)
-            y += meal_font_size + 23
+            draw.text((x + 10, y), item, fill='black', font=meal_font)
+            y += meal_font_size + 27
 
         filename = os.path.join(output_folder, f'{meal.lower()}_menu.jpeg')
         image.save(filename, format='JPEG')
