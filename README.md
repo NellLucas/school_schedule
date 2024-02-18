@@ -3,12 +3,30 @@
 
 ## Getting Started / 어떻게 시작하나요?
 
+## Getting Started / 어떻게 시작하나요?
+
 ### Prerequisites / 선행 조건
 
-아래 사항들이 선행되어야 합니다.
+아래 사항들이 설치가 되어있어야합니다.
+
+```
+Python3
+```
+
+### Installing / 설치
+
+아래 사항들로 현 프로젝트에 관한 모듈들을 설치할 수 있습니다.
 
 ```
 pip install -r requirements.txt
+```
+
+### How to use? / 사용 방법
+
+main.py 실행 후, 사용자 이름과 비밀번호를 입력하면 됩니다.
+
+```
+python3 main.py
 ```
 
 ## Issues / 이슈
