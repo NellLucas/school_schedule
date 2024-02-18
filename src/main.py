@@ -17,6 +17,7 @@ cl = Client()
 cl.login(ACCOUNT_USERNAME, ACCOUNT_PASSWORD)
 print("Login Successful")
 
+
 def fetch_image():
     schedules, meal_data = ns.get_info(school_name, ns.get_current_date())
     clean_meal_data = {key: [util.remove_numbers(menu_item) for menu_item in value] for key, value in meal_data.items()}
