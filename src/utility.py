@@ -1,5 +1,5 @@
 import json
-
+import re
 
 def save_id():
     while True:
@@ -19,3 +19,7 @@ def get_id():
             return json_data
     except:
         return save_id()
+
+
+def remove_numbers(items):
+    return re.sub(r'\s*\([0-9.]*\)', '', items)
