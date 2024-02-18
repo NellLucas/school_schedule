@@ -26,7 +26,7 @@ def fetch_image():
 def upload_instagram():
     fetch_image()
     upload_img = ["images/아침_menu.jpeg", "images/점심_menu.jpeg", "images/저녁_menu.jpeg", "images/schedule.jpeg"]
-    cl.album_upload(paths=upload_img, caption=f'{datetime.now().strftime("%Y/%m/%d")}의 학사일정입니다.')
+    cl.album_upload(paths=upload_img, caption=f'{datetime.now().strftime("%Y/%m/%d")}의 급식 및 학사일정입니다.')
     time.sleep(5)
     print("Upload Completed in ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
