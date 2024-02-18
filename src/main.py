@@ -19,7 +19,8 @@ print("Login Successful")
 
 def fetch_image():
     schedules, meal_data = ns.get_info(school_name, ns.get_current_date())
-    draw.create_meal_image(schedules, meal_data)
+    clean_meal_data = {key: [util.remove_numbers(menu_item) for menu_item in value] for key, value in meal_data.items()}
+    draw.create_meal_image(schedules, clean_meal_data)
     draw.create_schedule_image(school_name)
 
 
