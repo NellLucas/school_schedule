@@ -3,8 +3,6 @@
 
 ## Getting Started / 어떻게 시작하나요?
 
-## Getting Started / 어떻게 시작하나요?
-
 ### Prerequisites / 선행 조건
 
 아래 사항들이 설치가 되어있어야합니다.
