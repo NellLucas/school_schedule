@@ -40,6 +40,8 @@ async def get_meal(school_name, date):
                 meal_data[i] = meal_row.DDISH_NM.split("<br/>")
             except IndexError:
                 meal_data[i] = ['데이터가 없습니다']
+            except NameError:
+                meal_data = {0: ['데이터가 없습니다'], 1: ['데이터가 없습니다'], 2: ['데이터가 없습니다']}
     return meal_data
 
 
