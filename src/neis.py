@@ -1,10 +1,10 @@
-from neispy import Neispy
+import neispy
 from datetime import datetime
 from asyncio.events import get_event_loop
 
 
 async def get_schedule(school_name, date):
-    async with Neispy() as neis:
+    async with neispy.Neispy() as neis:
         school_info = await neis.schoolInfo(SCHUL_NM=school_name)
         row = school_info.schoolInfo[1].row[0]
         AE = row.ATPT_OFCDC_SC_CODE
@@ -15,27 +15,31 @@ async def get_schedule(school_name, date):
             )
             row = row_schedule.SchoolSchedule[1].row[0]
             schedule = row.EVENT_NM
-        except:
+        except neispy.error.DataNotFound:
             schedule = "일정이 없습니다."
     return schedule
 
 
 async def get_meal(school_name, date):
-    async with Neispy() as neis:
+    async with neispy.Neispy() as neis:
         school_info = await neis.schoolInfo(SCHUL_NM=school_name)
         row = school_info.schoolInfo[1].row[0]
         AE = row.ATPT_OFCDC_SC_CODE
         SE = row.SD_SCHUL_CODE
+        meal_data = {}
         try:
             meal_info = await neis.mealServiceDietInfo(
                 ATPT_OFCDC_SC_CODE=AE, SD_SCHUL_CODE=SE, MLSV_YMD=date
             )
-            meal_data = {}
-            for i in range(3):
+        except neispy.error.DataNotFound:
+            pass
+
+        for i in range(3):
+            try:
                 meal_row = meal_info.mealServiceDietInfo[1].row[i]
                 meal_data[i] = meal_row.DDISH_NM.split("<br/>")
-        except:
-            meal_data = {0: ['데이터가 없습니다'], 1: ['데이터가 없습니다'], 2: ['데이터가 없습니다']}
+            except IndexError:
+                meal_data[i] = ['데이터가 없습니다']
     return meal_data
 
 
