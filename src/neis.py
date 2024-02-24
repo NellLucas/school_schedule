@@ -38,7 +38,7 @@ async def get_meal(school_name, date):
             for meal_row in meal_info.mealServiceDietInfo[1].row:
                 meal_code = int(meal_row.MMEAL_SC_CODE)
                 meal_data[meal_code - 1] = meal_row.DDISH_NM.split("<br/>")
-        except (IndexError, AttributeError):
+        except (IndexError, AttributeError, NameError):
             pass
     return meal_data
 
