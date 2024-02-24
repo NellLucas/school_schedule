@@ -26,7 +26,7 @@ async def get_meal(school_name, date):
         row = school_info.schoolInfo[1].row[0]
         AE = row.ATPT_OFCDC_SC_CODE
         SE = row.SD_SCHUL_CODE
-        meal_data = {}
+        meal_data = {i: ['데이터가 없습니다'] for i in range(3)}
         try:
             meal_info = await neis.mealServiceDietInfo(
                 ATPT_OFCDC_SC_CODE=AE, SD_SCHUL_CODE=SE, MLSV_YMD=date
@@ -34,14 +34,12 @@ async def get_meal(school_name, date):
         except neispy.error.DataNotFound:
             pass
 
-        for i in range(3):
-            try:
-                meal_row = meal_info.mealServiceDietInfo[1].row[i]
-                meal_data[i] = meal_row.DDISH_NM.split("<br/>")
-            except IndexError:
-                meal_data[i] = ['데이터가 없습니다']
-            except NameError:
-                meal_data = {0: ['데이터가 없습니다'], 1: ['데이터가 없습니다'], 2: ['데이터가 없습니다']}
+        try:
+            for meal_row in meal_info.mealServiceDietInfo[1].row:
+                meal_code = int(meal_row.MMEAL_SC_CODE)
+                meal_data[meal_code - 1] = meal_row.DDISH_NM.split("<br/>")
+        except (IndexError, AttributeError):
+            pass
     return meal_data
 
 
