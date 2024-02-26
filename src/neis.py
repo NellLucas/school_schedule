@@ -16,7 +16,7 @@ async def get_schedule(school_name, date):
             row = row_schedule.SchoolSchedule[1].row[0]
             schedule = row.EVENT_NM
         except neispy.error.DataNotFound:
-            schedule = "일정이 없습니다."
+            schedule = "일정이 없습니다"
     return schedule
 
 
