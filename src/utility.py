@@ -24,3 +24,8 @@ def get_id():
 
 def remove_numbers(items):
     return re.sub(r'\s*\([0-9.]*\)', '', items)
+
+
+def get_fomatted_date(date):
+    formatted_date = date.strftime("%Y%m%d")
+    return formatted_date

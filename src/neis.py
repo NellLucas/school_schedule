@@ -1,5 +1,4 @@
 import neispy
-from datetime import datetime
 from asyncio.events import get_event_loop
 
 
@@ -50,9 +49,3 @@ def get_info(school_name, date):
     except Exception as e:
         return f"Error: {e}", f"Error: {e}"
     return schedule, meal_data
-
-
-def get_current_date():
-    current_date = datetime.now()
-    formatted_date = current_date.strftime("%Y%m%d")
-    return formatted_date

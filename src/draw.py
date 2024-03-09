@@ -3,7 +3,7 @@ from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime, timedelta
 
 
-def create_meal_image(schedule, meal_data, output_folder='images'):
+def create_meal_image(schedule, meal_data, date=None, output_folder='images'):
     import os
     os.makedirs(output_folder, exist_ok=True)
     meal_data = {"아침": meal_data[0], "점심": meal_data[1], "저녁": meal_data[2]}
@@ -23,7 +23,7 @@ def create_meal_image(schedule, meal_data, output_folder='images'):
         image = Image.new('RGB', (w, h), 'white')
         draw = ImageDraw.Draw(image)
 
-        draw.text((x, y), f'{datetime.now().strftime('%m/%d')} ({meal})', fill='black', font=title_font)
+        draw.text((x, y), f'{date.strftime('%m/%d')} ({meal})', fill='black', font=title_font)
         draw.text((x + 480, y + 13), f' - {schedule}', fill='black', font=schedule_font)
         y += title_font_size + 50
 
@@ -35,11 +35,11 @@ def create_meal_image(schedule, meal_data, output_folder='images'):
         image.save(filename, format='JPEG')
 
 
-def create_schedule_image(school_name, output_folder='images'):
+def create_schedule_image(school_name, date=None, output_folder='images'):
     import os
     os.makedirs(output_folder, exist_ok=True)
 
-    week_start = datetime.today() - timedelta(days=datetime.today().weekday())
+    week_start = date - timedelta(days=date.weekday()) if date else datetime.today() - timedelta(days=datetime.today().weekday())
     this_week = [(week_start + timedelta(days=i)).strftime('%Y%m%d') for i in range(7)]
     week_schedule = [0, 0, 0, 0, 0, 0, 0]
     for i in range(7):
