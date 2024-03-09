@@ -24,7 +24,7 @@ def create_meal_image(schedule, meal_data, output_folder='images'):
         draw = ImageDraw.Draw(image)
 
         draw.text((x, y), f'{datetime.now().strftime('%m/%d')} ({meal})', fill='black', font=title_font)
-        draw.text((x + 480, y + 13), f'- {schedule}', fill='black', font=schedule_font)
+        draw.text((x + 480, y + 13), f' - {schedule}', fill='black', font=schedule_font)
         y += title_font_size + 50
 
         for item in items:
@@ -73,10 +73,3 @@ def create_schedule_image(school_name, output_folder='images'):
         y += schedule_font_size + 18
 
     image.save(os.path.join(output_folder, 'schedule.jpeg'), format='JPEG')
-
-
-def get_current_date():
-    current_date = datetime.now()
-    formatted_date = current_date.strftime("%Y%m%d")
-
-    return formatted_date
