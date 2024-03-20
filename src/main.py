@@ -35,7 +35,7 @@ def fetch_image(school_name):
 def upload_images(cl):
     upload_img = ["images/아침_menu.jpeg", "images/점심_menu.jpeg", "images/저녁_menu.jpeg", "images/schedule.jpeg"]
     cl.album_upload(paths=upload_img, caption=f'{date.strftime("%Y/%m/%d")}의 급식 및 학사일정입니다.')
-    time.sleep(5)
+    time.sleep(60)
     print("Upload Completed in ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
@@ -45,6 +45,7 @@ def upload_instagram():
         try:
             cl = login_instagram(ACCOUNT_USERNAME, ACCOUNT_PASSWORD)
             fetch_image(school_name)
+            time.sleep(120)
             upload_images(cl)
             return
         except Exception as e:
@@ -53,6 +54,7 @@ def upload_instagram():
             retry_count += 1
         finally:
             if 'cl' in locals():
+                time.sleep(120)
                 cl.logout()
                 print("Logout Successful")
 
