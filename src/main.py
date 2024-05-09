@@ -3,6 +3,7 @@ import neis as ns
 import utility as util
 import schedule
 import time
+import os
 from instagrapi import Client
 from datetime import datetime
 
@@ -34,7 +35,8 @@ def fetch_image(school_name):
 
 
 def upload_images(cl):
-    upload_img = ["images/아침_menu.jpeg", "images/점심_menu.jpeg", "images/저녁_menu.jpeg", "images/schedule.jpeg"]
+    image_folder = "images"
+    upload_img = [os.path.join(image_folder, image) for image in os.listdir(image_folder) if os.path.isfile(os.path.join(image_folder, image))]
     cl.album_upload(paths=upload_img, caption=f'{date.strftime("%Y/%m/%d")}의 급식 및 학사일정입니다.')
     time.sleep(60)
     print("Upload Completed in ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'))

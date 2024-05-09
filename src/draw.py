@@ -17,7 +17,7 @@ def create_meal_image(schedule, meal_data, date=None, output_folder='images'):
     schedule_font_size = 55
     schedule_font = ImageFont.truetype("fonts/GmarketSansTTFMedium.ttf", schedule_font_size)
 
-    for meal, items in meal_data.items():
+    for index, (meal, items) in enumerate(meal_data.items()):
         if items == ['null']:
             continue
         w, h = 1080, 1080
@@ -33,7 +33,7 @@ def create_meal_image(schedule, meal_data, date=None, output_folder='images'):
             draw.text((x + 10, y), item, fill='black', font=meal_font)
             y += meal_font_size + 27
 
-        filename = os.path.join(output_folder, f'{meal.lower()}_menu.jpeg')
+        filename = os.path.join(output_folder, f'{index+1}_menu.jpeg')
         image.save(filename, format='JPEG')
 
 
