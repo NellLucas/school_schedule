@@ -2,6 +2,7 @@ import json
 import re
 import os
 
+
 def save_id():
     while True:
         username = input("사용자 이름(USERNAME)을 입력하세요 : ")
