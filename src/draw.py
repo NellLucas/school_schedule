@@ -18,6 +18,8 @@ def create_meal_image(schedule, meal_data, date=None, output_folder='images'):
     schedule_font = ImageFont.truetype("fonts/GmarketSansTTFMedium.ttf", schedule_font_size)
 
     for meal, items in meal_data.items():
+        if items == ['null']:
+            continue
         w, h = 1080, 1080
         x, y = 50, 50
         image = Image.new('RGB', (w, h), 'white')

@@ -25,7 +25,7 @@ async def get_meal(school_name, date):
         row = school_info.schoolInfo[1].row[0]
         AE = row.ATPT_OFCDC_SC_CODE
         SE = row.SD_SCHUL_CODE
-        meal_data = {i: ['데이터가 없습니다'] for i in range(3)}
+        meal_data = {i: ['null'] for i in range(3)}
         try:
             meal_info = await neis.mealServiceDietInfo(
                 ATPT_OFCDC_SC_CODE=AE, SD_SCHUL_CODE=SE, MLSV_YMD=date

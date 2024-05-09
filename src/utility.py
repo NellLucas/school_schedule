@@ -1,6 +1,6 @@
 import json
 import re
-
+import os
 
 def save_id():
     while True:
@@ -29,3 +29,13 @@ def remove_numbers(items):
 def get_fomatted_date(date):
     formatted_date = date.strftime("%Y%m%d")
     return formatted_date
+
+
+def remove_files(folder_path):
+    for file_name in os.listdir(folder_path):
+        file_path = os.path.join(folder_path, file_name)
+        try:
+            if os.path.isfile(file_path):
+                os.unlink(file_path)
+        except Exception as e:
+            print(f"Failed to delete {file_path}. Reason: {e}")

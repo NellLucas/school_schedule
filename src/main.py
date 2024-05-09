@@ -24,6 +24,7 @@ def login_instagram(USERNAME, PASSWORD):
 
 
 def fetch_image(school_name):
+    util.remove_files('images')
     global date
     date = datetime.now()
     schedules, meal_data = ns.get_info(school_name, util.get_fomatted_date(date))
