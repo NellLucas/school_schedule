@@ -36,7 +36,7 @@ def fetch_image(school_name):
 
 def upload_images(cl):
     image_folder = "images"
-    upload_img = [os.path.join(image_folder, image) for image in os.listdir(image_folder) if os.path.isfile(os.path.join(image_folder, image))]
+    upload_img = sorted([os.path.join(image_folder, image) for image in os.listdir(image_folder) if os.path.isfile(os.path.join(image_folder, image))])
     cl.album_upload(paths=upload_img, caption=f'{date.strftime("%Y/%m/%d")}의 급식 및 학사일정입니다.')
     time.sleep(60)
     print("Upload Completed in ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
