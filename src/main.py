@@ -37,7 +37,13 @@ def fetch_image(school_name):
 def upload_images(cl):
     image_folder = "images"
     upload_img = sorted([os.path.join(image_folder, image) for image in os.listdir(image_folder) if os.path.isfile(os.path.join(image_folder, image))])
-    cl.album_upload(paths=upload_img, caption=f'{date.strftime("%Y/%m/%d")}의 급식 및 학사일정입니다.')
+    if len(upload_img) == 1:
+        cl.photo_upload(path=upload_img[0], caption=f'{date.strftime("%Y/%m/%d")}의 급식 및 학사일정입니다.')
+    elif len(upload_img) > 1:
+        cl.album_upload(paths=upload_img, caption=f'{date.strftime("%Y/%m/%d")}의 급식 및 학사일정입니다.')
+    else:
+        print("No images to upload.")
+        return
     time.sleep(60)
     print("Upload Completed in ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
